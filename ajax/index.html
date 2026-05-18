@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background-color: #f4f4f4;
+        }
+
+        .container{
+            width: 350px;
+            margin: 80px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px lightgray;
+        }
+
+        h2{
+            text-align: center;
+            color: blue;
+        }
+
+        input{
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        button{
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background: darkblue;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>User Registration</h2>
+
+        <form id="registerForm">
+
+            <input type="text"
+                   id="name"
+                   placeholder="Enter Name"
+                   required>
+
+            <input type="email"
+                   id="email"
+                   placeholder="Enter Email"
+                   required>
+
+            <input type="password"
+                   id="password"
+                   placeholder="Enter Password"
+                   required>
+
+            <button type="submit">
+                Register
+            </button>
+
+        </form>
+
+    </div>
+
+<script>
+
+document.getElementById("registerForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    // Get Input Values
+    let name = document.getElementById("name").value;
+
+    let email = document.getElementById("email").value;
+
+    let password = document.getElementById("password").value;
+
+    // Create Object
+    let user = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    // Get Existing Data
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Push New User
+    users.push(user);
+
+    // Save to Local Storage
+    localStorage.setItem("users", JSON.stringify(users));
+
+    // AJAX POST Request
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST",
+             "https://jsonplaceholder.typicode.com/posts",
+             true);
+
+    xhr.setRequestHeader("Content-Type",
+                         "application/json");
+
+    xhr.send(JSON.stringify(user));
+
+    alert("Registration Successful");
+
+    // Redirect to next page
+    window.location.href = "list.html";
+
+});
+
+</script>
+
+</body>
+</html>

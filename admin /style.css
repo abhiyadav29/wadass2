@@ -1,0 +1,19 @@
+body{
+    background-color: rgb(255, 255, 255);
+
+}
+.sidebar{
+       color: rgb(241, 243, 245);
+       height:100cm;
+       padding-top: 20px;
+       background-color: rgb(5, 1, 1);
+}
+.sidebar a{
+   color: rgb(247, 245, 245);
+   display: block;
+   text-decoration: none;
+   padding: 20px;
+}
+.sidebar a:hover{
+    background-color: aqua;
+}

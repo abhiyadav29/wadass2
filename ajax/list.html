@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background-color: #f4f4f4;
+        }
+
+        .container{
+            width: 700px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px lightgray;
+        }
+
+        h2{
+            text-align: center;
+            color: blue;
+        }
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td{
+            border: 1px solid gray;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th{
+            background: blue;
+            color: white;
+        }
+
+        tr:nth-child(even){
+            background: #f2f2f2;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Registered Users</h2>
+
+        <table>
+
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+
+            <tbody id="tableData">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+<script>
+
+    // Get Data From Local Storage
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    let table = document.getElementById("tableData");
+
+    // Display Data
+    users.forEach(function(user){
+
+        table.innerHTML += `
+
+            <tr>
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <td>${user.password}</td>
+            </tr>
+
+        `;
+
+    });
+
+</script>
+
+</body>
+</html>
